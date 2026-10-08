@@ -418,28 +418,36 @@ function OrderDrawer({ order, onClose, onChanged }: { order: Order | null; onClo
       </ul>
 
       {order.mode === 'domicilio' && st !== 'cancelado' && (
-        <div className="a-inline-form">
-          <Field label="Valor del domicilio" hint="Se suma al total; el cliente lo ve en su seguimiento.">
-            <input className="a-input" inputMode="numeric" value={fee} onChange={(e) => setFee(e.target.value.replace(/\D/g, ''))} placeholder="Ej: 4000" />
-          </Field>
-          <button type="button" className="a-btn" onClick={saveFee} disabled={busy}>
-            Guardar
-          </button>
-        </div>
+        <InlineField id="o-fee" label="Valor del domicilio" hint="Se suma al total; el cliente lo ve en su seguimiento." onSave={saveFee} busy={busy}>
+          <input id="o-fee" className="a-input" inputMode="numeric" value={fee} onChange={(e) => setFee(e.target.value.replace(/\D/g, ''))} placeholder="Ej: 4000" />
+        </InlineField>
       )}
       {st !== 'entregado' && st !== 'cancelado' && (
         <Field label="Motivo si lo cancelas (opcional)">
           <input className="a-input" value={reason} onChange={(e) => setReason(e.target.value)} placeholder="Ej: el cliente no respondió" />
         </Field>
       )}
-      <div className="a-inline-form">
-        <Field label="Nota interna">
-          <input className="a-input" value={note} onChange={(e) => setNote(e.target.value)} placeholder="Solo la ve el equipo" />
-        </Field>
-        <button type="button" className="a-btn" onClick={() => update({ admin_note: note.trim() || null }, 'Nota guardada')} disabled={busy}>
+      <InlineField id="o-note" label="Nota interna" onSave={() => update({ admin_note: note.trim() || null }, 'Nota guardada')} busy={busy}>
+        <input id="o-note" className="a-input" value={note} onChange={(e) => setNote(e.target.value)} placeholder="Solo la ve el equipo" />
+      </InlineField>
+    </Drawer>
+  );
+}
+
+/** Campo con botón "Guardar" al lado: el botón queda alineado con el campo, no con la nota de ayuda. */
+function InlineField({ id, label, hint, onSave, busy, children }: { id: string; label: string; hint?: string; onSave: () => void; busy: boolean; children: React.ReactNode }) {
+  return (
+    <div className="a-field">
+      <label className="a-field__label" htmlFor={id}>
+        {label}
+      </label>
+      <div className="a-inline">
+        {children}
+        <button type="button" className="a-btn" onClick={onSave} disabled={busy}>
           Guardar
         </button>
       </div>
-    </Drawer>
+      {hint && <span className="a-field__hint">{hint}</span>}
+    </div>
   );
 }

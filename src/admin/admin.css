@@ -80,8 +80,9 @@ textarea.a-input { resize: vertical; }
 .a-money { position: relative; display: block; }
 .a-money > span { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--a-muted); font-weight: 700; font-size: 13px; }
 .a-money .a-input { padding-left: 26px; }
-.a-inline-form { display: flex; align-items: flex-end; gap: 8px; }
-.a-inline-form .a-btn { margin-bottom: 12px; }
+.a-inline { display: flex; align-items: stretch; gap: 8px; }
+.a-inline > .a-input { flex: 1; min-width: 0; }
+.a-inline > .a-btn { flex: none; min-height: 40px; }
 
 .a-toggle { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; cursor: pointer; }
 .a-toggle__sw {
@@ -441,6 +442,4 @@ form.a-row .a-btn { margin-bottom: 12px; }
   .a-plist__price { font-size: 12.5px; }
   .a-view__head { margin-bottom: 10px; }
   .a-view__head p { font-size: 13px; }
-  .a-inline-form { flex-direction: column; align-items: stretch; }
-  .a-inline-form .a-btn { margin-bottom: 12px; }
 }
