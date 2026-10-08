@@ -1,0 +1,16 @@
+{
+  "name": "Pollos Rokoko",
+  "short_name": "Rokoko",
+  "description": "Pollo al horno, frito y broaster. Calidad y sabor sin límite.",
+  "lang": "es-CO",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0e0d0d",
+  "theme_color": "#e3141c",
+  "icons": [
+    { "src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/img/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

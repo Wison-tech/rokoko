@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+Thumbs.db
+
+# Material del cliente (la carta vive en la base de datos)
+CARTAS ROKOKO.pdf
