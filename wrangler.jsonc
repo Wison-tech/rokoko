@@ -1,0 +1,12 @@
+// Despliegue en Cloudflare (Workers con archivos estáticos).
+// El nombre debe coincidir con el del Worker creado en el panel de Cloudflare.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rokoko",
+  "compatibility_date": "2026-10-08",
+  "assets": {
+    "directory": "./dist",
+    // Cualquier ruta que no sea un archivo (p. ej. /admin) carga la app.
+    "not_found_handling": "single-page-application"
+  }
+}

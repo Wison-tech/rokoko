@@ -42,12 +42,12 @@ Variables en `.env.local` (ver `.env.example`): `VITE_SUPABASE_URL` y `VITE_SUPA
 2. Inicia sesión: como aún no hay administradores, te ofrece ser el **administrador principal**.
 3. Para sumar personas: ellas crean su cuenta y tú las agregas en **Equipo**.
 
-## Publicar (Cloudflare Pages + GitHub)
+## Publicar (Cloudflare + GitHub)
 
-- Cada push a `main` lo publica Cloudflare Pages automáticamente; cada rama o PR genera una vista previa.
+- Cloudflare Workers (archivos estáticos) conectado al repo: cada push a `main` compila (`npm run build`) y publica
+  `dist` según `wrangler.jsonc`. El nombre en `wrangler.jsonc` debe ser el del Worker en Cloudflare.
+- `/admin` y cualquier otra ruta cargan la app (`not_found_handling: single-page-application`).
+- Los valores públicos de Supabase están en `.env.production` (no hace falta configurar variables en Cloudflare).
 - GitHub Actions (`.github/workflows/ci.yml`) revisa tipos y compila en cada push y PR.
-- Configuración en Cloudflare Pages: framework **Vite**, build `npm run build`, salida `dist`, variables
-  `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` y `NODE_VERSION=22`.
-- `/admin` funciona gracias a `public/_redirects`.
 - En Supabase → Authentication → URL Configuration pon la URL final como **Site URL** y agrega
   `https://TU-DOMINIO/admin` (y `http://localhost:5173/admin`) a **Redirect URLs**.

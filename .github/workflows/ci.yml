@@ -17,7 +17,3 @@ jobs:
       - run: npm ci
       - name: Revisar tipos y compilar
         run: npm run build
-        env:
-          # La llave publishable es pública por diseño (va en el navegador).
-          VITE_SUPABASE_URL: https://zltmpojcsrlxjmgafemp.supabase.co
-          VITE_SUPABASE_PUBLISHABLE_KEY: sb_publishable_KJ4sYEZYi0TL7doEUmAsIw_yTWKron_
